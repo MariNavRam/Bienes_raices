@@ -1,16 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Mail\contactonot;
+use App\Mail\Notificacion;
 use Illuminate\Http\Request;
 use App\Models\Casas;
 use App\Models\Category;
 use App\Models\Clasification;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Manager;
-use Illuminate\Html\FormFacade;
-use Illuminate\Html\HtmlFacade;
+
 
 class CasaController extends Controller
 {
@@ -30,14 +27,14 @@ class CasaController extends Controller
     {
         $request->user()->authorizeRoles('admin');
         $casas = Casas::all();
-        $casas = Casas::with('clasificacion','categorias')->paginate(20);
+        $casas = Casas::with('clasificacion','categorias')->paginate(10);
         return view('casas.index', compact('casas'));
     }
     public function dashboard(Request $request)
 
 
     {
-        $casas = Casas::with('clasificacion','categorias')->paginate(20);
+        $casas = Casas::with('clasificacion','categorias')->paginate(10);
         return view('anuncios', compact('casas'));
     }
     public function anuncio($id)
@@ -101,7 +98,6 @@ class CasaController extends Controller
          //$casa = Casas::where('nombre', $request->nombre);
         $casa->categorias()->attach($request->categories);
         // $casa->clasificaciones()->attach($request->clasifications);
-        $request->session()->flash('alert-success', 'Creada con exito!!');
 
          return redirect()->route('casas.index');
          //$request->session()->flash('alert-success', 'Creada con exito!!');
@@ -125,6 +121,18 @@ class CasaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function search(Request $request)
+    {
+        if($request->q==null){
+            $request->q="";
+        }
+        $casas = Casas::with('clasificacion','categorias')
+        ->where('nombre', 'LIKE', "%{$request->q}%")
+        ->orwhere('descripcion', 'LIKE', "%{$request->q}%")
+        ->orwhere('precio', 'LIKE', "%{$request->q}%")
+            ->get();
+        return view('casas.index', compact('casas'));
+    }
     public function edit(Casas $casa)
     {
         $categories = Category::all();
@@ -202,7 +210,7 @@ class CasaController extends Controller
 
     public function notificar()
     {
-        Mail::to(\Auth::user()->email)->send(new contactonot ());
-        return redirect()->back;
+        Mail::to(\Auth::user()->email)->send(new Notificacion ());
+        return redirect()->back();
     }
 }

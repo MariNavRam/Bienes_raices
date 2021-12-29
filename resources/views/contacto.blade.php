@@ -74,7 +74,7 @@ use Illuminate\Suppor\Facades\Mail;
                 </select>
 
                 <label for="cantidad">Cantidad:</label>
-                <input type="number" min="0" max="100" step="5">
+                <input type="number" min="100000" max="10000000" step="5">
             </fieldset>
 
             <fieldset>
@@ -90,17 +90,15 @@ use Illuminate\Suppor\Facades\Mail;
                     <input type="radio" name="contacto" value="correo" id="correo">
                 </div>
 
-                <p>Si eligió Teléfono, elija la fecha y la hora</p>
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fecha">
 
-                <label for="hora">Hora:</label>
-                <input type="time" id="hora" min="09:00" max="18:00">
 
 
             </fieldset>
+            <input type="submit" value="Enviar" class="boton boton-verde"></a>
+            <p>
+                <a class="boton boton-verde" href="{{route('notificar')}}">Envio de notificación a mi correo</a>
+            </p>
 
-             <input type="submit" value="Enviar" class="boton boton-verde"></a>
 
         </form>
     </main>

@@ -11,6 +11,20 @@
                 <a type="button" href="{{route('casas.create')}}"
                     class="bg-indigo-500 px-12 py-2 rounded text-gray-200 font-semibold hover:bg-indigo-800 transition duration-200 each-in-out">Crear</a>
 
+
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <form class="card-body" action="/casas/search" method="POST" role="search">
+                        {{ csrf_field() }}
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Buscar..." name="q">
+                            <span class="input-group-btn">
+                                <button   class="bg-indigo-500 px-12 py-2 rounded text-gray-200 font-semibold hover:bg-indigo-800 transition duration-200 each-in-out" type="submit">Buscar</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
                 <table class="table-fixed w-full">
                     <thead>
                         <tr class="bg-gray-800 text-white">
@@ -53,6 +67,7 @@
 
                                 <div class="flex justify-center rounded-lg text-lg" role="group">
                                     <!--boton editar -->
+
                                     <a href="{{ route('casas.edit', $casa->id)}}"
                                         class="rounded bg-gray-500 hover:bg-grsy-500 text-white font-bold py-2 px-4">Editar</a>
                                     <!--boton borrar -->

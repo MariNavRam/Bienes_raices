@@ -5,10 +5,6 @@
         </h2>
     </x-slot>
 
-    @if(Session::has('flash_message'))
-    <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
-@endif
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -114,6 +110,7 @@
             </div>
         </div>
     </div>
+
 </x-app-layout>
 
 <!-- Script para ver la imagen antes de CREAR UN NUEVO PRODUCTO -->

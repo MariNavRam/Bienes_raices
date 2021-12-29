@@ -7,10 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Contactonot extends Mailable
+class Notificacion extends Mailable
 {
     use Queueable, SerializesModels;
-    public $informacion;
+     public $informacion;
 
     /**
      * Create a new message instance.
@@ -19,7 +19,8 @@ class Contactonot extends Mailable
      */
     public function __construct()
     {
-        $this->informacion="Gracias por contactarte";
+        $this->informacion="Gracias por contactarnos!...
+         En breve nos comunicaremos contigo";
     }
 
     /**
@@ -29,6 +30,6 @@ class Contactonot extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.contactonot');
+        return $this->view('emails.notificacion');
     }
 }

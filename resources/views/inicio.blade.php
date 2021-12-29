@@ -79,7 +79,7 @@
 
                     <ul class="iconos-caracteristicas">
                         <li>
-                            <img src="..assents/img/icono_wc.svg" alt="icono wc">
+                            <img src="../assents/img/icono_wc.svg" alt="icono wc">
                             <p>3</p>
                         </li>
                         <li>
@@ -91,6 +91,7 @@
                             <p>4</p>
                         </li>
                     </ul>
+
 
 
 

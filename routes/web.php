@@ -54,6 +54,8 @@ Route::get('/inventario', function () {
 Route::get('/files', function () {
     return view('files');
 });
+Route::post('/casas/search', [CasaController::class, 'search']);
+Route::get('/casas/search', [CasaController::class, 'index']);
 
 Route::get('notificar', [CasaController::class, 'notificar'])->name('notificar');
 
